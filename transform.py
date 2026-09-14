@@ -8,7 +8,9 @@ load_dotenv()
 
 engine = create_engine(
     f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
-    f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+    f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}?sslmode=require",
+    pool_pre_ping=True,
+    pool_recycle=300,
 )
 
 def log_run(stage, table_name, rows_processed, rows_rejected, status, notes=""):

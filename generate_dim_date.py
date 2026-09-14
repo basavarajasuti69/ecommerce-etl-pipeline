@@ -8,6 +8,7 @@ load_dotenv()
 engine = create_engine(
     f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
     f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+    f"?sslmode=require"
 )
 
 # Cover 2016-01-01 through 2018-12-31 (dataset range with buffer)
